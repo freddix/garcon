@@ -1,0 +1,23 @@
+From 07bdc7fd85453ae5e9e0c7b15b388060cda363ca Mon Sep 17 00:00:00 2001
+From: Jérôme Guelfucci <jeromeg@xfce.org>
+Date: Sun, 05 Aug 2012 13:53:15 +0000
+Subject: g_thread_init is deprecated since glib 2.32.
+
+---
+diff --git a/tests/test-menu-parser.c b/tests/test-menu-parser.c
+index 350b40c..7e6beed 100644
+--- a/tests/test-menu-parser.c
++++ b/tests/test-menu-parser.c
+@@ -223,8 +223,10 @@ main (int    argc,
+ 
+   g_type_init ();
+ 
++#if !GLIB_CHECK_VERSION(2,32,0)
+   if (!g_thread_supported ())
+     g_thread_init (NULL);
++#endif
+ 
+   garcon_set_environment ("XFCE");
+ 
+--
+cgit v0.9.0.3
