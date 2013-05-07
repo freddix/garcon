@@ -2,13 +2,12 @@
 
 Summary:	freedesktop.org compliant menu implementation
 Name:		garcon
-Version:	0.2.0
+Version:	0.2.1
 Release:	1
 License:	LGPL v2
 Group:		Libraries
 Source0:	http://archive.xfce.org/src/libs/garcon/0.2/%{name}-%{version}.tar.bz2
-# Source0-md5:	301e7b8015060dd30407b68dd8c4bdb7
-Patch0:		07bdc7fd85453ae5e9e0c7b15b388060cda363ca.patch
+# Source0-md5:	c3cf89c836be0ddb281c81e4808fb68b
 URL:		http://www.xfce.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -51,9 +50,8 @@ garcon API documentation.
 
 %prep
 %setup -q
-%patch0 -p1
 
-sed -i -e 's|nb_NO|nb|' -e 's|pt_PT|pt|' configure.in
+%{__sed} -i -e 's|nb_NO|nb|' -e 's|pt_PT|pt|' configure.ac
 mv po/{nb_NO,nb}.po
 mv po/{pt_PT,pt}.po
 
