@@ -1,13 +1,13 @@
-%define		xfce_version	4.10.0
+%define		xfce_version	4.11.0
 
 Summary:	freedesktop.org compliant menu implementation
 Name:		garcon
-Version:	0.2.1
-Release:	2
+Version:	0.3.0
+Release:	1
 License:	LGPL v2
 Group:		Libraries
-Source0:	http://archive.xfce.org/src/libs/garcon/0.2/%{name}-%{version}.tar.bz2
-# Source0-md5:	c3cf89c836be0ddb281c81e4808fb68b
+Source0:	http://archive.xfce.org/src/libs/garcon/0.3/%{name}-%{version}.tar.bz2
+# Source0-md5:	853f13fbad4760374a2a889acaa4a6c1
 URL:		http://www.xfce.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -51,11 +51,6 @@ garcon API documentation.
 %prep
 %setup -q
 
-%{__sed} -i -e 's|nb_NO|nb|' \
-    -e 's|pt_PT|pt|' configure.ac
-mv po/{nb_NO,nb}.po
-mv po/{pt_PT,pt}.po
-
 %build
 %{__libtoolize}
 %{__gtkdocize}
@@ -94,12 +89,16 @@ rm -rf $RPM_BUILD_ROOT
 %files libs
 %defattr(644,root,root,755)
 %attr(755,root,root) %ghost %{_libdir}/libgarcon-1.so.?
+%attr(755,root,root) %ghost %{_libdir}/libgarcon-gtk2-1.so.0
 %attr(755,root,root) %{_libdir}/libgarcon-1.so.*.*.*
+%attr(755,root,root) %{_libdir}/libgarcon-gtk2-1.so.*.*.*
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libgarcon-1*.so
+%attr(755,root,root) %{_libdir}/libgarcon-1.so
+%attr(755,root,root) %{_libdir}/libgarcon-gtk2-1.so
 %{_includedir}/garcon-1
+%{_includedir}/garcon-gtk2-1
 %{_pkgconfigdir}/*.pc
 
 %files apidocs
